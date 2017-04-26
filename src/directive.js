@@ -138,6 +138,8 @@ var doBind = function () {
       doCheck.call(directive);
     });
   }
+
+  directive.direction = element.getAttribute('infinite-scroll-direction') || 'bottom';
 };
 
 var doCheck = function (force) {
@@ -151,12 +153,16 @@ var doCheck = function (force) {
 
   var shouldTrigger = false;
 
-  if (scrollEventTarget === element) {
-    shouldTrigger = scrollEventTarget.scrollHeight - viewportBottom <= distance;
-  } else {
-    var elementBottom = getElementTop(element) - getElementTop(scrollEventTarget) + element.offsetHeight + viewportScrollTop;
+  if (this.direction === 'bottom') {
+    if (scrollEventTarget === element) {
+      shouldTrigger = scrollEventTarget.scrollHeight - viewportBottom <= distance;
+    } else {
+      var elementBottom = getElementTop(element) - getElementTop(scrollEventTarget) + element.offsetHeight + viewportScrollTop;
 
-    shouldTrigger = viewportBottom + distance >= elementBottom;
+      shouldTrigger = viewportBottom + distance >= elementBottom;
+    }
+  } else if (this.direction === 'top') {
+    shouldTrigger = getScrollTop(scrollEventTarget) <= distance;
   }
 
   if (shouldTrigger && this.expression) {
