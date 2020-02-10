@@ -1,18 +1,18 @@
 {
-  "name": "vue-infinite-scroll",
+  "name": "@chesscom/vue-infinite-scroll",
   "version": "2.0.1",
   "description": "An infinite scroll directive for vue.js.",
   "main": "vue-infinite-scroll.js",
   "jsnext:main": "./src/index.js",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "test": "npm run build && xo src/**/* && karma start",
     "build": "rollup -c",
     "prepublish": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ElemeFE/vue-infinite-scroll.git"
-  },
+  "repository": "git://github.com/chesscom/mini-css-extract-plugin.git",
   "keywords": [
     "infinite-scroll",
     "vue"
